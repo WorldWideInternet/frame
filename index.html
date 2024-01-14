@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Viewer</title>
+</head>
+<body>
+
+<h2>Enter a Website URL:</h2>
+<form id="urlForm">
+    <input type="text" id="websiteUrl" placeholder="Enter URL" required>
+    <button type="button" onclick="loadWebsite()">Load Website</button>
+</form>
+
+<h2>Website Preview:</h2>
+<iframe id="websiteFrame" width="800" height="600"></iframe>
+
+<script>
+    function loadWebsite() {
+        var urlInput = document.getElementById('websiteUrl').value;
+        var iframe = document.getElementById('websiteFrame');
+        iframe.src = urlInput;
+    }
+</script>
+
+</body>
+</html>
