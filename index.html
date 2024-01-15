@@ -7,22 +7,22 @@
 </head>
 <body>
 
-<h2>Enter a Website URL:</h2>
-<form id="urlForm">
-    <input type="text" id="websiteUrl" placeholder="Enter URL" required>
-    <button type="button" onclick="loadWebsite()">Load Website</button>
-</form>
+    <label for="websiteUrl">Enter Website URL (without https://): </label>
+    <input type="text" id="websiteUrl" placeholder="example.com">
 
-<h2>Website Preview:</h2>
-<iframe id="websiteFrame" width="800" height="600"></iframe>
+    <button onclick="loadWebsite()">Load Website</button>
 
-<script>
-    function loadWebsite() {
-        var urlInput = document.getElementById('websiteUrl').value;
-        var iframe = document.getElementById('websiteFrame');
-        iframe.src = urlInput;
-    }
-</script>
+    <br><br>
+
+    <iframe id="websiteFrame" width="800" height="600"></iframe>
+
+    <script>
+        function loadWebsite() {
+            var url = document.getElementById('websiteUrl').value;
+            var iframe = document.getElementById('websiteFrame');
+            iframe.src = "http://" + url;
+        }
+    </script>
 
 </body>
 </html>
