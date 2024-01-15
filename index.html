@@ -17,8 +17,28 @@
 
     <h2>Website Preview:</h2>
 
-    <iframe id="websiteFrame" width="800" height="600" frameborder="0"></iframe>
+    <div id="iframeContainer"></div>
 
     <script>
         function loadWebsite() {
-            var url =
+            var url = document.getElementById("websiteUrl").value;
+
+            // Create a new iframe element
+            var iframe = document.createElement("iframe");
+            
+            // Set the source of the iframe
+            iframe.src = url;
+
+            // Set attributes for the iframe
+            iframe.width = "800";
+            iframe.height = "600";
+            iframe.frameborder = "0";
+
+            // Append the iframe to the container
+            document.getElementById("iframeContainer").innerHTML = "";
+            document.getElementById("iframeContainer").appendChild(iframe);
+        }
+    </script>
+
+</body>
+</html>
