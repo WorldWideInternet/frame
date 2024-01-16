@@ -66,6 +66,16 @@
                 console.log('Website loaded successfully!');
                 // Hide loading spinner
                 loadingSpinner.style.display = "none";
+
+                // Attach click event listener to the iframe content
+                var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                iframeDocument.body.addEventListener("click", function(event) {
+                    // Check if the clicked element is a game link
+                    if (event.target.tagName === "A" && event.target.href.endsWith("/game.html")) {
+                        // Redirect the main window
+                        window.location.href = event.target.href;
+                    }
+                });
             };
 
             iframe.onerror = function() {
