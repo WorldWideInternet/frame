@@ -4,19 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Viewer</title>
-    <style>
-        #iframeContainer {
-            position: relative;
-        }
-
-        #loadingSpinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -24,66 +11,18 @@
     
     <form id="urlForm">
         <label for="websiteUrl">URL:</label>
-        <input type="url" id="websiteUrl" name="websiteUrl" required>
+        <input type="text" id="websiteUrl" name="websiteUrl" required>
         <button type="button" onclick="loadWebsite()">Load Website</button>
     </form>
 
     <h2>Website Preview:</h2>
 
-    <div id="iframeContainer">
-        <div id="loadingSpinner">Loading...</div>
-    </div>
+    <iframe id="websiteFrame" width="800" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 
     <script>
         function loadWebsite() {
             var url = document.getElementById("websiteUrl").value;
-            var iframeContainer = document.getElementById("iframeContainer");
-            var loadingSpinner = document.getElementById("loadingSpinner");
-
-            // Show loading spinner
-            loadingSpinner.style.display = "block";
-
-            // Clear previous content
-            iframeContainer.innerHTML = "";
-
-            // Create a new iframe element
-            var iframe = document.createElement("iframe");
-            
-            // Set the source of the iframe
-            iframe.src = url;
-
-            // Set attributes for the iframe
-            iframe.width = "800";
-            iframe.height = "600";
-            iframe.frameborder = "0";
-            iframe.sandbox = "allow-same-origin allow-scripts";
-
-            // Append the iframe to the container
-            iframeContainer.appendChild(iframe);
-
-            // Handle errors
-            iframe.onload = function() {
-                console.log('Website loaded successfully!');
-                // Hide loading spinner
-                loadingSpinner.style.display = "none";
-
-                // Attach click event listener to the iframe content
-                var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                iframeDocument.body.addEventListener("click", function(event) {
-                    // Check if the clicked element is a game link
-                    if (event.target.tagName === "A" && event.target.href.endsWith("/game.html")) {
-                        // Redirect the main window
-                        window.location.href = event.target.href;
-                    }
-                });
-            };
-
-            iframe.onerror = function() {
-                console.error('Failed to load website. Please check the URL and try again.');
-                iframeContainer.innerHTML = "<p>Failed to load website. Please check the URL and try again.</p>";
-                // Hide loading spinner
-                loadingSpinner.style.display = "none";
-            };
+            document.getElementById("websiteFrame").src = url;
         }
     </script>
 
