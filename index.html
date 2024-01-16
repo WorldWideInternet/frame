@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Viewer</title>
+    <title>Dynamic Iframe</title>
 </head>
 <body>
 
@@ -11,18 +11,18 @@
     
     <form id="urlForm">
         <label for="websiteUrl">URL:</label>
-        <input type="text" id="websiteUrl" name="websiteUrl" required>
-        <button type="button" onclick="loadWebsite()">Load Website</button>
+        <input type="text" id="linker" name="linker" required>
+        <button type="button" onclick="loadIframe()">Load Iframe</button>
     </form>
 
     <h2>Website Preview:</h2>
 
-    <iframe id="websiteFrame" width="800" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    <iframe id="websiteFrame" width="800" height="600" frameborder="0"></iframe>
 
     <script>
-        function loadWebsite() {
-            var url = document.getElementById("websiteUrl").value;
-            document.getElementById("websiteFrame").src = url;
+        function loadIframe() {
+            var linker = document.getElementById("linker").value;
+            document.getElementById("websiteFrame").src = linker;
         }
     </script>
 
