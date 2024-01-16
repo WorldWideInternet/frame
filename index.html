@@ -11,7 +11,7 @@
     
     <form id="urlForm">
         <label for="websiteUrl">URL:</label>
-        <input type="text" id="websiteUrl" name="websiteUrl" required>
+        <input type="url" id="websiteUrl" name="websiteUrl" required>
         <button type="button" onclick="loadWebsite()">Load Website</button>
     </form>
 
@@ -22,6 +22,10 @@
     <script>
         function loadWebsite() {
             var url = document.getElementById("websiteUrl").value;
+            var iframeContainer = document.getElementById("iframeContainer");
+
+            // Clear previous content
+            iframeContainer.innerHTML = "";
 
             // Create a new iframe element
             var iframe = document.createElement("iframe");
@@ -33,10 +37,15 @@
             iframe.width = "800";
             iframe.height = "600";
             iframe.frameborder = "0";
+            iframe.sandbox = "allow-same-origin allow-scripts";
 
             // Append the iframe to the container
-            document.getElementById("iframeContainer").innerHTML = "";
-            document.getElementById("iframeContainer").appendChild(iframe);
+            iframeContainer.appendChild(iframe);
+
+            // Handle errors
+            iframe.onerror = function() {
+                iframeContainer.innerHTML = "<p>Failed to load website. Please check the URL and try again.</p>";
+            };
         }
     </script>
 
