@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Viewer</title>
+    <style>
+        #iframeContainer {
+            position: relative;
+        }
+
+        #loadingSpinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,12 +30,18 @@
 
     <h2>Website Preview:</h2>
 
-    <div id="iframeContainer"></div>
+    <div id="iframeContainer">
+        <div id="loadingSpinner">Loading...</div>
+    </div>
 
     <script>
         function loadWebsite() {
             var url = document.getElementById("websiteUrl").value;
             var iframeContainer = document.getElementById("iframeContainer");
+            var loadingSpinner = document.getElementById("loadingSpinner");
+
+            // Show loading spinner
+            loadingSpinner.style.display = "block";
 
             // Clear previous content
             iframeContainer.innerHTML = "";
@@ -43,8 +62,17 @@
             iframeContainer.appendChild(iframe);
 
             // Handle errors
+            iframe.onload = function() {
+                console.log('Website loaded successfully!');
+                // Hide loading spinner
+                loadingSpinner.style.display = "none";
+            };
+
             iframe.onerror = function() {
+                console.error('Failed to load website. Please check the URL and try again.');
                 iframeContainer.innerHTML = "<p>Failed to load website. Please check the URL and try again.</p>";
+                // Hide loading spinner
+                loadingSpinner.style.display = "none";
             };
         }
     </script>
