@@ -3,28 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Iframe</title>
+    <title>Anonymous Iframe Example</title>
 </head>
 <body>
 
-    <h2>Enter Website URL:</h2>
-    
-    <form id="urlForm">
-        <label for="websiteUrl">URL:</label>
-        <input type="text" id="linker" name="linker" required>
-        <button type="button" onclick="loadIframe()">Load Iframe</button>
-    </form>
+<script>
+    /**
+     * Function to anonymously iframe a given URL.
+     *
+     * @param {string} url - The URL to be iframed.
+     * @returns {string} The HTML code for the anonymous iframe.
+     */
+    function iframeAnonymously(url) {
+        // Generate a random ID for the iframe
+        const iframeId = `iframe_${Math.floor(Math.random() * 1000000)}`;
 
-    <h2>Website Preview:</h2>
+        // Create the iframe element
+        const iframe = document.createElement("iframe");
+        iframe.src = url;
+        iframe.id = iframeId;
+        iframe.style.display = "none";
 
-    <iframe id="websiteFrame" width="800" height="600" frameborder="0"></iframe>
+        // Append the iframe to the document body
+        document.body.appendChild(iframe);
 
-    <script>
-        function loadIframe() {
-            var linker = document.getElementById("linker").value;
-            document.getElementById("websiteFrame").src = linker;
-        }
-    </script>
+        // Return the HTML code for the anonymous iframe
+        return `<iframe src="${url}" id="${iframeId}" style="display: none;"></iframe>`;
+    }
+
+    // Usage Example for iframeAnonymously
+
+    const url = "https://platformerdotio.co";
+    const anonymousIframe = iframeAnonymously(url);
+    console.log(anonymousIframe);
+</script>
 
 </body>
 </html>
