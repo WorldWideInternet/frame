@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Iframe Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFrame Website</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <input type="text" id="urlInput" placeholder="Enter URL">
+    <button onclick="loadURL()">Load</button>
+  </div>
+  <iframe id="myIframe" src="" frameborder="0"></iframe>
 
-<script>
-    /**
-     * Function to anonymously iframe a given URL.
-     *
-     * @param {string} url - The URL to be iframed.
-     * @returns {string} The HTML code for the anonymous iframe.
-     */
-    function iframeAnonymously(url) {
-        // Generate a random ID for the iframe
-        const iframeId = `iframe_${Math.floor(Math.random() * 1000000)}`;
-
-        // Create the iframe element
-        const iframe = document.createElement("iframe");
-        iframe.src = url;
-        iframe.id = iframeId;
-        iframe.style.display = "none";
-
-        // Append the iframe to the document body
-        document.body.appendChild(iframe);
-
-        // Return the HTML code for the anonymous iframe
-        return `<iframe src="${url}" id="${iframeId}" style="display: none;"></iframe>`;
+  <script>
+    function loadURL() {
+      var url = document.getElementById('urlInput').value;
+      document.getElementById('myIframe').src = url;
     }
-
-    // Usage Example for iframeAnonymously
-
-    const url = "https://platformerdotio.co";
-    const anonymousIframe = iframeAnonymously(url);
-    console.log(anonymousIframe);
-</script>
-
+  </script>
 </body>
 </html>
